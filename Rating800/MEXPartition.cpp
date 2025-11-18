@@ -11,19 +11,16 @@ int main () {
             scanf("%d", &a[i]);
         }
         sort(a.begin(), a.end());
-        vector<int>A(n);
-        for (int i=0; i<n; i++) {
-            A[i]=i;
+        for (int i=0; i<n+1; i++) {
+            int flag=0;
+            for (int j=0; j<n; j++) {
+                if(i==a[j]) flag++;
+            }
+            if (flag==0) {
+                printf("%d\n", i);
+                break;
+            }
         }
-        int j;
-        for (int i=0, j=0; i<n; i++) {
-            if (i+1==n) break;
-            else if (a[i]==A[j]) j++;
-            else if (i-1==-1) continue;
-            else if (a[i-1]==a[i]) continue;
-            else if (a[i]!=A[j]) break;
-        }
-        printf("%d\n", j);
         t--;
     }
 }

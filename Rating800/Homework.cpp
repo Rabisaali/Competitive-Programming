@@ -15,33 +15,27 @@ int main () {
         char b[m], c[m];
         scanf("%s", b);
         scanf("%s", c);
-        
-        int count[m];
-        int counts=0;
-        for (int i=0; i<m; i++) {
-            count[i]=-1;
+
+        char strings[n+m];
+        int i = 0;
+        for (int j=m-1; j>=0; j--) {
+            if (c[j]=='V') {
+                strings[i++] = b[j];
+            }
+        }
+        for (int j=0; j<n; j++) {
+            strings[i++] = a[j];
+        }
+        for (int j=0; j<m; j++) {
+            if (c[j]=='D') {
+                strings[i++] = b[j];
+            }
         }
 
-        for (int i=0; i<m; i++) {
-            if (c[i]=='V') {
-                count[counts++]=i;
-            }
+        for (int k=0; k<i; k++) {
+            printf("%c", strings[k]);
         }
-        char strings[n+m];
-        int temp=counts;
-        for (int i=0; i<counts; i++) {
-            strings[i] = b[count[temp--]];
-        }
-        int j=0;
-        for(int i=counts; i<counts+n; i++) {
-            strings[i] = a[j++];
-        }
-        for(int i=counts+n, k=0; i<m-counts-n; i++, k++) {
-            if (c[k]=='D') {
-                strings[i] = b[k];
-            }
-        }
-        printf("%s\n", strings);
+        printf("\n");
         t--;
     }
 } 
