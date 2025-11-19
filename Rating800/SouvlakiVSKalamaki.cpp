@@ -7,22 +7,21 @@ int main () {
         int n;
         scanf("%d", &n);
         vector <int> a(n);
-        vector <int> b(n);
         for (int i=0; i<n; i++) {
             scanf("%d", &a[i]);
-            b[i]=a[i];
         }
 
-        sort(b.begin(), b.end(), greater<int>());
-        for(int i=0; i<n; i++) {
-            if(b[i]==a[i]) 
+        sort(a.begin(), a.end());
+        int flag=0;
+        for(int i=1; i<n; i+=2) {
+            if (i+1 == n) break;
+            if(a[i]!=a[i+1]) {
+                flag++;
+                printf("NO\n");
+                break;
+            }
         }
-        if (b[0]==a[n-1]) {
-            printf("No\n");
-        }
-        else {
-            printf("Yes\n");
-        }
+        if (flag==0) printf("YES\n");
         t--;
     }
 }
