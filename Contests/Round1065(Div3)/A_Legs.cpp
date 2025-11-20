@@ -8,9 +8,11 @@ int main () {
         scanf("%lld", &n);
         int count = 0;
         if (n%2 != 0) printf("0\n");
-        else if (n==2) printf("1\n");
         else {
-            printf("%lld\n", n/4 + 1);
+            if (n%4==0) printf("%lld\n", n/4);
+            else {
+                printf("%lld\n", n/4 + 2);
+            }
         }
         t--;
     }
