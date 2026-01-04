@@ -8,15 +8,20 @@ int main () {
         int n;
         cin >> n;
         int a[n];
+        int diff = 1e9;
+        int sorted=0;
         for (int i=0; i<n; i++) {
             cin >> a[i];
+            if (i>0) {
+                diff = min ((a[i]-a[i-1]), diff);
+                if (a[i-1]>a[i]) sorted=1;
+            }
         }
-        int i=0; 
-        while (a[n-2]<=a[n-1]) {
-            a[n-2]++;
-            a[n-1]--;
-            i++;
+        if (sorted == 1) {
+            cout << "0\n";
+            continue;
         }
-        cout << i << "\n";
+        int ans = diff/2 + 1;
+        cout << ans << "\n";
     }
 }
