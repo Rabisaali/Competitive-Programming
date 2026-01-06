@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define LL long long int
+int main () {
+    LL t;
+    cin >> t;
+    while (t--) {
+        int n, a, b;
+        cin >> n >> a >> b;
+        if ((a+b+2 <= n) || (a==n && b==n)) {
+            cout << "Yes\n";
+        }
+        else {
+            cout << "No\n";
+        }
+    }
+}
