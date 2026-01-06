@@ -12,7 +12,7 @@ int main () {
             char q;
             scanf(" %c %d %c", &s, &x, &q);
             int ans;
-            if (x%2 == 0) ans=x/2;
+            if (s==q) ans=x/2;
             else ans = (x+1)/2;
             
             printf("%d\n", ans);

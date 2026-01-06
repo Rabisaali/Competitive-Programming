@@ -2,12 +2,12 @@
 using namespace std;
 int main () {
     int t;
-    scanf("%d", &t);
-    while (t>0) {
+    cin >> t;
+    while (t--) {
         int x, y;
-        scanf("%d %d", &x, &y);
-        int ans = x/2;
-        printf("%d\n", ans);
-        t--;
+        cin >> x >> y;
+        if (x==2*y) cout << y << "\n";
+        else if(x>y) cout << x-y << "\n";
+        else cout << "0\n";
     }
 }
