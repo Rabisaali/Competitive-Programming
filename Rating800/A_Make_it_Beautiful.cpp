@@ -11,11 +11,13 @@ int main () {
         for (int i=0; i<n; i++) {
             cin >> a[i];
         }
-        sort(a.begin(), a.end(), greater<int>());
-        if (a[0]==a[n-1]) cout << "NO\n";
+        if (a[0]==a[n-1]) {
+            cout << "NO\n";
+        }
         else {
             cout << "YES\n";
-            for (int i=0; i<n; i++) {
+            cout << a[n-1] << " " << a[0] << " ";
+            for (int i=1; i<n-1; i++) {
                 cout << a[i] << " ";
             }
             cout << "\n";
