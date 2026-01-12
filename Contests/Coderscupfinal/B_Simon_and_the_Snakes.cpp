@@ -10,107 +10,23 @@ int main () {
             cin >> arr[i][j];
         }
     }
+    int dx[] = {-1,0,1,-1,1,-1,0,1};
+    int dy[] = {1,1,1,0,0,-1,-1,-1};
     int ans=0;
     for (int i=0; i<r; i++) {
-        
         for (int j=0; j<c; j++) {
             int count = 0;
-            if(i==0 && j==0) {
+            int total=0;
+            for (int k=0; k<8; k++) {
                 if (arr[i][j]=='S') continue;
-                else {
-                    if (arr[i][j+1] == 'S') count++;
-                    if (arr[i+1][j] == 'S') count++;
-                    if (arr[i+1][j+1] == 'S') count++;
-                    if (count <= 1) ans++;
-                }
+
+                int ni = i+dx[k];
+                int nj = j+dy[k];
+                if (ni<0 || ni>=r || nj<0 || nj>=c) continue;
+                else if (arr[ni][nj]=='.') count++;
+                total++;
             }
-            else if (i==0 && j>0 && j<c-1) {
-                if (arr[i][j]=='S') continue;
-                else {
-                    if (arr[i][j-1]=='S') count++;
-                    if (arr[i][j+1]=='S') count++;
-                    if (arr[i+1][j-1]=='S') count++;
-                    if (arr[i+1][j]=='S') count++;
-                    if (arr[i+1][j+1]=='S') count++;
-                    if (count < 3) ans++; 
-                }
-            }
-            else if (i==0 && j==c-1) {
-                if (arr[i][j]=='S') continue;
-                else {
-                    if (arr[i][j-1]=='S') count++;
-                    if (arr[i+1][j-1]=='S') count++;
-                    if (arr[i+1][j]=='S') count++;
-                    if (count <= 1) ans++;
-                }
-            }
-            else if (i>0 && i<r-1 && j==0) {
-                if (arr[i][j]=='S') continue;
-                else {
-                    if (arr[i][j+1]=='S') count++;
-                    if (arr[i-1][j]=='S') count++;
-                    if (arr[i+1][j]=='S') count++;
-                    if (arr[i-1][j+1]=='S') count++;
-                    if (arr[i][j+1]=='S') count++;
-                    if (arr[i+1][j+1]=='S') count++;
-                    if (count < 3) ans++;
-                }
-            }
-            else if (i>0 && i<r-1 && j==c-1) {
-                if (arr[i][j]=='S') continue;
-                else {
-                    if (arr[i][j-11]=='S') count++;
-                    if (arr[i-1][j]=='S') count++;
-                    if (arr[i+1][j]=='S') count++;
-                    if (arr[i-1][j-1]=='S') count++;
-                    if (arr[i][j-1]=='S') count++;
-                    if (arr[i+1][j-1]=='S') count++;
-                    if (count < 3) ans++;
-                }
-            }
-            else if (i==r-1 && j==0) {
-                if (arr[i][j]=='S') continue;
-                else {
-                    if (arr[i][j+1]=='S') count++;
-                    if (arr[i-1][j+1]=='S') count++;
-                    if (arr[i-1][j]=='S') count++;
-                    if (count <= 1) ans++;
-                }
-            }
-            else if (i==r-1 && j==c-1) {
-                if (arr[i][j]=='S') continue;
-                else {
-                    if (arr[i][j-1]=='S') count++;
-                    if (arr[i-1][j-1]=='S') count++;
-                    if (arr[i-1][j]=='S') count++;
-                    if (count <= 1) ans++;
-                }
-            }
-            else if (i==r-1 && j>0 && j<c-1) {
-                if (arr[i][j]=='S') continue;
-                else {
-                    if (arr[i][j-1]=='S') count++;
-                    if (arr[i][j+1]=='S') count++;
-                    if (arr[i-1][j-1]=='S') count++;
-                    if (arr[i-1][j]=='S') count++;
-                    if (arr[i-1][j+1]=='S') count++;
-                    if (count < 3) ans++; 
-                }
-            }
-            else {
-                if (arr[i][j]=='S') continue;
-                else {
-                    if (arr[i-1][j-1]=='S') count++;
-                    if (arr[i-1][j]=='S') count++;
-                    if (arr[i-1][j+1]=='S') count++;
-                    if (arr[i][j-1]=='S') count++;
-                    if (arr[i][j+1]=='S') count++;
-                    if (arr[i+1][j-1]=='S') count++;
-                    if (arr[i+1][j]=='S') count++;
-                    if (arr[i+1][j+1]=='S') count++;
-                    if (count < 4) ans++;
-                }
-            }
+            if (count > (total/2)) ans++;
         }
     }
     cout << ans << "\n";
