@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define LL long long int
+int main () {
+    int t;
+    cin >> t;
+    while(t--) {
+        int n;
+        cin >> n;
+        vector<int>a(n);
+        int count1=0, count67=0;
+        for (int i=0; i<n; i++) {
+            cin >> a[i];
+        }
+        if (find(a.begin(), a.end(), 67) != a.end()) cout << "YES\n";
+        else cout << "NO\n";
+    
+    }
+}
