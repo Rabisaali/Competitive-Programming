@@ -9,26 +9,16 @@ int main () {
     vector<int>a(n);
     for (int i=0; i<n; i++) cin >> a[i];
     
-    vector<int>v(n);
-    // v[1]=abs(a[0]-a[1]);
-    // LL temp=2;
-    // for (LL i=2; i<k && i<n; i++) {
-    //     v[i]=abs(a[i]-a[i-1]);
-    //     for(LL j=2; j<i; j++) {
-    //         v[i]=min(v[i], abs(a[j]-a[j+1]));
-    //     }
-    //     temp=i;
-    //     //v[i]=abs(a[i]-a[i-1]);
-    // }
+    vector<int>v(n, INT_MAX);
     v[0]=0;
-    for (int i=1; i<n; i++) {
-        v[i]=100000;
+    for (int i=0; i<n; i++) {
+        //v[i]=100000;
         //v[i]=abs(a[i]-a[i-1]);
-        for(int j=i; j >= max(1, i-k); j--) {
-            v[i]=min(v[i], v[j]+abs(a[i]-a[j]));
+        for(LL j=i+1; j<=i+k; j++) {
+            if (j<n) v[j]=min(v[j], v[i]+abs(a[i]-a[j]));
             //if (mini > (v[j]+abs(a[j]-a[j+1]))) mini = v[j]+abs(a[j]-a[j+1]);
         }
         //v[i]=mini; 
     }
-    cout << v[n-2] << "\n";
+    cout << v[n-1] << "\n";
 }
