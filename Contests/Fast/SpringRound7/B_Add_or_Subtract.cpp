@@ -39,9 +39,13 @@ void solve () {
     cin >> n >> k;
     vi a(n);
     inputv (a);
-    while (k-- && a[0]>0) {
-        a[0]--;
-        a[n-1]++;
+    //int i=0;
+    for(int i=0; i<n && k>0; i++) {
+        int ans=min(k, a[i]);
+        a[i]-=ans;
+        a[n-1]+=ans;
+        k-=ans;
+        //i++;
     }
     f(i, 0, n) {
         cout << a[i] << " ";
