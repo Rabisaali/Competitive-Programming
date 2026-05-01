@@ -29,7 +29,7 @@ using namespace std;
 #define pp pop_back
 #define eb emplace_back
 #define all(s) s.begin(), s.end()
-#define sa(vec) sort(vec.begin(), vec.end(), greater<int>())
+#define sa(vec) sort(vec.begin(), vec.end())
 
 bool prime(ll a) { if (a == 1) return 0; for (int i = 2; i <= round(sqrt(a)); ++i) if (a % i == 0) return 0; return 1; }
 ll modexp(ll a, ll b, ll m) { ll res = 1; a %= m; while (b > 0) { if (b & 1) res = (res * a) % m; a = (a * a) % m; b >>= 1; } return res; }
@@ -40,38 +40,17 @@ void solve () {
     vi a(n);
     inputv(a);
     sa(a);
-    int counter=0;
-    //bool flag=true;
+    //int counter=0;
+    
+    int count=0;
     for(int i=0; i<n; i++) {
-        if (a[i]==n) {
-           counter++;
-        } 
-        if (counter>=2) {
+        if (a[i]>i+1) {
             cout << "-1\n";
             return;
         }
-    }
-
-    
-    int count=0;
-    vi b;
-    for(int i=n; i<=1; i--) {
-        //if (a[i]==-1) continue;
-        auto index = find(a.begin(), a.end(), i);
-        if (index != a.end()) {
-            b.push_back(i);
-            //count+=(i-*index);
-            *index = -1;
-        }   
-    }
-    for(int i=n, j=0; i>=1, j<n; i--, j++) {
-        if (find(b.begin(), b.end(), i)!=b.end()) continue;
-        else {
-            count+=(i-a[j]);
-        }
+        count+=((i+1)-a[i]);
     }
     cout << count << "\n";
-    
 }
 signed main () {
     fastnuces;
