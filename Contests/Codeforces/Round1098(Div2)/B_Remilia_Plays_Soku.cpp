@@ -38,13 +38,18 @@ void solve () {
     int n, x1, x2, k;
     cin >> n >> x1 >> x2 >> k;
     int diff = abs(x1 - x2);
-    int d = min(diff, n - diff);
+    int c = diff+k;
+    int d = n-max(x1,x2)+min(x2,x1) + k;
+    if (n<=3) {
+        cout << "1\n";
+        return;
+    }
     // if (n % 2 == 0 && d == n/2) cout << d << "\n";
     // else cout << d + k << "\n";
 
-    int mx = n / 2;
+    //int mx = n / 2;
 
-    cout << d + min(k, mx - d) << '\n';
+    cout <<min(c,d)<< '\n';
 }
 signed main () {
     fastnuces;
