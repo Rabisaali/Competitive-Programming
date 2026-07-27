@@ -38,36 +38,41 @@ ll modexp(ll a, ll b, ll m) { ll res = 1; a %= m; while (b > 0) { if (b & 1) res
 void solve () {
     int n, m;
     cin >> n >> m;
-    vi a;
+    //vi a;
     vvi mt(n, vector<int>(m));
     int x=0;
-    int r, c;
+    //int r, c;
     int count=0;
-    bool spot=false;
+    //bool spot=false;
     f(i, 0, n) {
         f(j, 0, m) {
             cin >> mt[i][j];
             if (mt[i][j]>x) {
                 x=mt[i][j];
-                // r=i;
-                // c=j;
-                // spot=false;
                 count=1;
             }
             else if (mt[i][j]==x) count++; 
         }
     }
     int maxc=0;
+    vi col(m), row(n);
     f(i, 0, n) {
         f(j, 0, m) {
-            
-                int tempc=0;
-                if (mt[i][j]==x) tempc-=1;
-                f(k, 0, m) {
-                    if (mt[i][k]==x) tempc++;
-                }
-                f(k, 0, n) if (mt[k][j]==x) tempc++;
-                if (tempc>maxc) maxc=tempc;
+            if(mt[i][j]==x) row[i]+=1;
+        }
+    }
+    f(j, 0, m) {
+        f(i, 0, n) {
+            if (mt[i][j]==x) col[j]+=1;
+        }
+    }
+
+    f(i, 0, n) {
+        f(j, 0, m) {
+            int temp=0;
+            if (mt[i][j]==x) temp = row[i]+col[j]-1;
+            else temp=row[i]+col[j];
+            if (temp>maxc) maxc=temp;
         }
     }
     if (maxc==count) cout << x-1 << "\n";
