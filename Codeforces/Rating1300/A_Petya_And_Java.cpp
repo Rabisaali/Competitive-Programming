@@ -40,15 +40,19 @@ void solve () {
     cin >> s;
     int n=s.length();
     if (n<=3) {
-        if (s<="127") cout << "byte\n";
+        if (n<3 || (n==3 && s<="127")) cout << "byte\n";
         else cout << "short\n";
     }
     else if (n<=5) {
-        if (s<="32767") cout << "short\n";
+        if (n<5 || (n==5 && s<="32767")) cout << "short\n";
         else cout << "int\n";
     }
     else if (n<=10) {
-        if (s<="2147483647") cout << "int\n";
+        if (n<10 || (n==10 && s<="2147483647")) cout << "int\n";
+        else cout << "long\n";
+    }
+    else if (n<=19) {
+        if (n<19 || (n==19 && s<="9223372036854775807")) cout << "long\n";
         else cout << "BigInteger\n";
     }
     else cout << "BigInteger\n";
