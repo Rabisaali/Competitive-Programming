@@ -16,7 +16,7 @@ using namespace std;
 #define vs vector<string>
 #define vpi vector<pair<int,int>>
 #define vvi vector<vector<int>>
-#define mp map<int,int>
+#define mp map<char,int>
 #define uset unordered_set<int>
 #define ump unordered_map<int,int>
 
@@ -36,11 +36,26 @@ bool prime(ll a) { if (a == 1) return 0; for (int i = 2; i <= round(sqrt(a)); ++
 ll modexp(ll a, ll b, ll m) { ll res = 1; a %= m; while (b > 0) { if (b & 1) res = (res * a) % m; a = (a * a) % m; b >>= 1; } return res; }
 #define fastnuces ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);int t = 1;
 void solve () {
-    int n;
-    cin >> n;
-    vi a(n);
-    inputv(a);
-    cout << *max_element(all(a)) << "\n";
+    int n, k;
+    cin >> n >> k;
+    mp m;
+    vc a(n);
+    f(i, 0, n) {
+        cin >> a[i];
+        m[a[i]]++;
+    }
+    vector<pair<char,int>>v={all(m)};
+    sort(all(v), [](auto& a, auto& b) {return a.second>b.second;});
+
+    int ans=0;
+    f(i, 0, v.size()) {
+        if (k<=0) break;
+        else {
+            ans+=(k<v[i].second? k*k: v[i].second*v[i].second);
+            k-=v[i].second;
+        }
+    }
+    cout << ans << "\n";
 }
 signed main () {
     fastnuces;
